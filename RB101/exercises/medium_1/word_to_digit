@@ -1,0 +1,85 @@
+# split string into words, spaces, and unique characters
+# create an index variable to 
+# iterate through the string
+#   if the current element, downcased, is a word in the number list
+#     change it to the number equivalent and push into the new string
+#     add one to index if the next element is a space
+#   else
+#     push the element into the new string
+#   end
+#   add one to index
+
+# substitue any 10 digit string to the telephone number output
+  
+
+NUMBERS = %w(zero one two three four five six seven eight nine)
+DIGITS = ('0'..'9')
+
+# def word_to_digit(string)
+#   string = string.split(/(\W)/)
+#   result = ''
+#   index = 0
+
+#   while index < string.length
+#     word = string[index]
+#     if NUMBERS.include?(word.downcase)
+#       result << NUMBERS.index(word.downcase).to_s
+#       index += 1 if string[index + 1] == ' '
+#     else
+#       result << word
+#     end
+#     index += 1
+#   end
+
+#   result.gsub!(/\d{10}/) do |num|
+#     "(#{num[0..2]})#{num[3..5]}-#{num[6..]}"
+#   end
+# end
+def format_phone_number(string)
+  string.gsub(/\d{10}/) do |num|
+    "(#{num[0..2]})#{num[3..5]}-#{num[6..]}"
+  end
+end
+
+def swap_numbers(array)
+array.map!.with_index do |word, index|
+    if NUMBERS.include?(word.downcase)
+      NUMBERS.index(word.downcase).to_s
+    elsif word == ' ' && DIGITS.include?(array[index - 1])
+      nil
+    else
+      word
+    end
+  end.compact.join
+end
+
+def word_to_digit(string)
+  strings_array = string.split(/(\W)/)
+  result = swap_numbers(strings_array)
+  format_phone_number(result)
+end
+
+p word_to_digit('Please call me at eight Seven zero five five five one two three four. Thanks.')
+
+# WORD_TO_DIGIT = %w(zero one two three four five six seven eight nine).zip(('0'..'9').to_a).to_h
+
+
+# def word_to_digit(string)
+#   string = string.split.map do |word|
+#               if WORD_TO_DIGIT.has_key?(word.downcase)
+#                 word.downcase
+#               else
+#                 word
+#               end
+#             end.join(' ')
+    
+#   WORD_TO_DIGIT.each do |word, number|
+#     string.gsub!(word, number)
+#   end
+#   string.gsub!(/\d{10}/) do |num|
+#     "(#{num[0..2]}) #{num[3..5]}-#{num[6..]}"
+#   end
+# end
+
+
+# p word_to_digit('Please call me at Five five five one two three four. Thanks.') #== 'Please call me at 5 5 5 1 2 3 4. Thanks.'

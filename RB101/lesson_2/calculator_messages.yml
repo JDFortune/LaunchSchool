@@ -1,0 +1,25 @@
+
+en:
+  first_number: "Enter the first number"
+  second_number: "Enter the second number"
+  not_number: "Not a valid number"
+  operation: "What calculation would you like to perform? (type the number) \n 
+              (1)add\n
+              (2)subtract\n
+              (3)multiply\n
+              (4)divide\n"
+  invalid_operation: "Not a valid operation"
+  again: "Would you like to perform another calculation? Y/N"
+  number_is: "number is"
+es:
+  first_number: "Enter the first number (but in spanish)"
+  second_number: "Enter the second number (but in spanish)" 
+  not_number: "Not a valid number (but in spanish)"
+  operation: "What calculation would you like to perform? (type the number) \n 
+              (1)add\n
+              (2)subtract\n
+              (3)multiply\n
+              (4)divide\n
+              (except this one is also in spanish)\n"
+  invalid_operation: "Not a valid operation (but in spanish)"
+  again: "Would you like to perform another calculation? Y/N (but in spanish)"

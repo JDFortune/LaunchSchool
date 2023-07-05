@@ -1,0 +1,8 @@
+welcome: "Welcome to Mortgage Calculator!"
+loan_amount: "Please enter the total amount of  your loan?"
+apr: "What is the APR (Annual Percentage Rate) of your loan? (ex 10% as 10; 2.5% as 2.5)"
+duration: "In how many years do you wish to pay off your loan? (whole or decimal values ok)"
+invalid_entry: "This is not a valid entry."
+again: "Want to calculate another mortgage? Y/N"
+thanks: "Thank you for using the Loan Calculator"
+g'day: "Have a great day!"
