@@ -1,0 +1,26 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <dir class="files_list">
+      <ul>
+      <% @files.each do |filename| %>
+        <li>
+          <a href="<%= filename %>"><%= filename %></a>
+        </li>
+      <% end %>
+      </ul>
+    </dir>
+
+    <dir class="sort_options">
+      <p>
+        <%# if params[:sort] == "desc" %>
+          <a href="/">Sort Ascending</a>
+        <%# else %>
+          <a href="/?sort=desc">Sort Descending</a>
+        <%# end %>
+      </p>
+    </dir>
+
+  </body>
+</html>
