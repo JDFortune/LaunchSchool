@@ -4,7 +4,7 @@
   <ul class="pure-menu-list">
     <% @contents.each.with_index(1) do |chapter, idx| %>
       <li class="pure-menu-item">
-        <a href="#" class="pure-menu-link"><%= chapter %></a>
+        <a href="/chapters/<%= idx %>" class="pure-menu-link">Chapter <%= idx %>: <%= chapter %></a>
       </li>
     <% end %>
   </ul>
