@@ -1,0 +1,65 @@
+body {
+  padding: 1em;
+  font-family: sans-serif;
+}
+
+.flash-message {
+  padding: 10px;
+  background-color: #FF9;
+}
+
+.above {
+  display: block;
+}
+
+/* ul {
+  display: inline-block;
+  margin: 0 0 10px 0;
+  padding: 0 10px;
+  outline: 2px solid black;
+
+} */
+
+
+tr td.file_links a {
+  color: blue;
+  text-decoration: none;
+}
+
+table{
+  margin: 10px 0;
+}
+
+tr td:first-of-type {
+  padding-right: 10px;
+}
+
+ tr td.file_links:hover {
+  color: rgb(60, 60, 201);
+  font-weight: bold;
+  color:aqua;
+}
+
+.button {
+  display: inline-block;
+  background-color: buttonface;
+  outline: 0.5px solid rgb(131, 131, 131);
+  text-decoration: none;
+  border-radius: 2px;
+  color: black;
+  font-size: 13px;
+  padding: 2px;
+}
+
+a.button:hover {
+  background-color: rgb(228, 228, 228);
+}
+
+form.inline {
+  display: inline;
+}
+
+.user-status {
+  font-style: italic;
+  font-size: 0.9em;
+}

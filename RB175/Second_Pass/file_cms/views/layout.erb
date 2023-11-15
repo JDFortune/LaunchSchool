@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+  <head>
+    <title>File Based CMS</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+  </head>
+  <body>
+    <% if session[:message] %>
+      <p class="flash-message"><%= session.delete(:message) %></p>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

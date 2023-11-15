@@ -1,0 +1,42 @@
+<!-- <ul class="file_links">
+  <% @files.each do |filename| %>
+    <li>
+      <a class="file-link" href="/<%= filename %>"><%= filename %></a>
+      <a class="button" href="/<%= filename %>/edit">&nbsp;edit&nbsp;</a>
+      <form class="inline" method="post" action="/<%= filename %>/delete">
+         <button type="submit">delete</a>
+      </form>
+     
+    </li>
+  <% end %>
+</ul> -->
+
+<table>
+  <% @files.each do |filename| %>
+  <tr>
+    <td class="file_links"><a href="/<%= filename %>"><%= filename %></a></td>
+    <td><a class="button" href="/<%= filename %>/edit">&nbsp;edit&nbsp;</a></td>
+    <td class="inline-block">
+      <form class="inline" method="post" action="/<%= filename %>/delete">
+        <button type="submit">delete</a>
+      </form>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+
+<form method="get" action="/new">
+  <button type="submit">New Document</button>
+</form>
+
+<% if signed_in? %>
+  <form method="post" action="/users/signout">
+    <p class="user-status">
+      Signed in as <%= session[:username] %>.
+      <button type="submit">Sign Out</button>
+    </p>
+  </form>
+<% else %>
+  <p><a class="button" href="/users/signin">Sign In</a></p>
+<% end %>

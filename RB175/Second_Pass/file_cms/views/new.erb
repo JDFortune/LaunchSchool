@@ -1,0 +1,18 @@
+<form method="post" action="/new">
+  <div>
+    <dl>
+      <dt><label class="above" for="document_name">Add a new document:</label></dt>
+      <dd><input type="text" name="document_name" id="document_name" value="<%= params[:document_name] %>" placeholder="Document Name"></dd>
+    </dl>
+  </div>
+  <div>
+    <dl>
+      <dt><label class="above" for="content">Document Content:</label></dt>
+      <dd><textarea rows="20" cols="80" name="content" id="content"></textarea></dd>
+    </dl>
+  </div>
+  
+  <button type="submit" value="Create Document">Create Document</button>
+  <a class="button" href="/">Cancel</a>
+</form>
+

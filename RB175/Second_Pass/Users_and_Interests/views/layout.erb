@@ -1,0 +1,17 @@
+<html lang="en-US">
+  <head>
+    <title>Users</title>
+    <meta charset="utf-8">
+    <style>
+      dt {
+        font-weight: bold;
+        font-size: 20px;
+        color: lightseagreen;
+      }
+    </style>
+  </head>
+  <body>
+    <%= yield %>
+    <p>There are <%= @users.keys.size %> users with a total of <%= count_interests(@users) %> interests.</p>
+  </body>
+</html>

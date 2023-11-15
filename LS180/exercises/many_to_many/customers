@@ -1,0 +1,667 @@
+\i ass10.sql 
+\d films
+\i ass10.sql 
+\i ass10.sql 
+select * from films;
+\i ass10.sql 
+\d films
+\?
+DROP DATABASE error_check
+;
+DROP TABLE error_check;
+\q
+\q
+\d
+\d films
+SELECT * FROM films;
+INSERT INTO films (title, year, genre, director, duration)
+VALUES
+('Godzilla', 1998, 'scifi', 'Roland Emmerich', 139),
+('Godzilla', 2014, 'scifi', 'Gareth Edwards', 123);
+select * from films;
+\i ass11.sql 
+\d
+\d colors
+select * from colors;
+SELECT nextval(4);
+SELECT 'hello';
+select nextval(colors);
+SELECT * FROM colord_id_seq;
+SELECT * FROM color_id_seq;
+\d
+SELECT * FROM colors_id_seq;
+UPDATE colors_id_seq SET last_value = 4;
+SELECT nextval('colors_id_seq');
+INSERT INTO colors (name) VALUES ('purple');
+select * from colors;
+ALTER TABLE colors ADD CONSTRAINT unique_id UNIQUE(id);
+\d colors
+INSERT INTO colors (name) VALUES ('orange');
+SELECT * FROM colors;
+\i ass11.sql 
+\i ass11.sql 
+\i ass11.sql 
+\i ass11.sql 
+\i ass11.sql 
+CREATE SEQUENCE even_counter INCREMENT BY 2 START WITH 0;
+CREATE SEQUENCE even_counter INCREMENT BY 2 START WITH 2;
+SELECT nextval('even_counter');
+SELECT nextval('even_counter');
+SELECT nextval('even_counter');
+DROP SEQUENCE even_counter;
+\i ass11.sql 
+\d films
+\d films
+\d films
+\i ass11.sql 
+\d films
+\q
+\d
+select * from films;
+\q
+\i ass12.sql 
+SELECT distinct(genre) FROM films;
+SELECT DISTINCT genre FROM films;
+SELECT DISTINCT genre FROM films ORDER BY genre;
+SELECT genre FROM films;
+SELECT genre FROM films GROUP BY genre;
+SELECT round(avg(duration)) FROM films;
+SELECT genre, ROUND(AVG(duration) FROM films GROUP BY genre;
+);
+SELECT genre, ROUND(AVG(duration)) FROM films GROUP BY genre;
+SELECT ROUND(year, -1) FROM films;
+SELECT ROUND(year, -1) AS decade, ROUND(duration) AS average_duration FROM films GROUP BY decade;
+SELECT ROUND(year, -1) AS decade, ROUND(AVG(duration)) AS average_duration FROM films GROUP BY decade;
+SELECT ROUND(year, -1) AS decade, ROUND(AVG(duration)) AS average_duration FROM films GROUP BY decade ORDER BY decade;
+SELECT title FROM films WHERE director LIKE 'John%';
+SELECT * FROM films WHERE director LIKE 'John%';
+SELECT genre, count(id) FROM films GROUP BY genre;
+SELECT genre, count(id) FROM films GROUP BY genre ORDER BY count;
+SELECT genre, count(id) FROM films GROUP BY genre ORDER BY count DESC;
+SELECT genre, count(films.id) FROM films GROUP BY genre ORDER BY count DESC;
+SELECT year / 10 * 10 AS decade, genre, STRING_AGG(title) FROM films GROUP BY decade ORDER BY decade, genre;
+SELECT year / 10 * 10 AS decade, genre, STRING_AGG(title, ', ') FROM films GROUP BY decade ORDER BY decade, genre;
+SELECT year / 10 * 10 AS decade, genre, STRING_AGG(title, ', ') FROM films GROUP BY genre ORDER BY decade, genre;
+SELECT year / 10 * 10 AS decade, genre, STRING_AGG(title, ', ') FROM films GROUP BY decade, genre ORDER BY decade, genre;
+SELECT genre, ROUND(AVG(duration)) AS total_duration FROM films GROUP BY genre;
+SELECT genre, sum(duration)) AS total_duration FROM films GROUP BY genre;
+SELECT genre, sum(duration) AS total_duration FROM films GROUP BY genre;
+SELECT genre, sum(duration) AS total_duration FROM films GROUP BY genre ORDER BY total_duration, genre;
+SELECT * AS info FROM films;
+SELECT substr(title from 1 for 1) FROM films;
+SELECT substring(title from 1 for 1) FROM films;
+SELECT titles  FROM films;
+SELECT title FROM films;
+\q
+INSERT INTO films_viewed (name, film_id)
+VALUES
+('Die Hard', (SELECT id FROM films WHERE title = 'Die Hard'));
+select * from films_viewed;
+INSERT INTO films_viewed (name, film_id)
+VALUES
+('Home Alone', (SELECT id FROM films WHERE title = 'Home Alone'));
+select * from films_viewed;
+\q
+\d
+\d customers
+\d tickets
+SELECT count(tickets.id) FROM tickets JOIN customers ON tickets.id = customers.id;
+SELECT DISTINCT(COUNT(customers.id)) FROM tickets JOIN customers ON tickets.id = customers.id;
+SELECT DISTINCT(COUNT(customers.id)) FROM customers JOIN tickets ON tickets.id = customers.id;
+SELECT count(id) FROM customers;
+SELECT COUNT(DISTINCT(customers.id)) FROM tickets JOIN customers ON tickets.id = customers.id;
+SELECT COUNT(DISTINCT(t.customer_id)) FROM tickets AS t JOIN customers  AS c ON t.id = c.id;
+SELECT COUNT(DISTINCT(customer_id) FROM tickets;
+);
+SELECT COUNT(DISTINCT(customer_id)) FROM tickets;
+SELECT COUNT(DISTINCT(t.customer_id) * 100.00 / COUNT(c.id) FROM tickets AS t JOIN customers AS c ON t.customer_id = c.id;
+);
+SELECT COUNT(DISTINCT(t.customer_id)) * 100.00 / COUNT(c.id) FROM tickets AS t JOIN customers AS c ON t.customer_id = c.id;
+SELECT COUNT(DISTINCT(t.customer_id)), COUNT(c.id) FROM tickets AS t JOIN customers AS c ON t.customer_id = c.id;
+SELECT COUNT(DISTINCT(t.customer_id)), COUNT(c.id) FROM tickets AS t FULL JOIN customers AS c ON t.customer_id = c.id;
+SELECT COUNT(DISTINCT(t.customer_id)), COUNT(c.id) FROM tickets AS t RIGHT JOIN customers AS c ON t.customer_id = c.id;
+SELECT COUNT(DISTINCT(t.customer_id)) * 100.00 / COUNT(c.id) FROM tickets AS t RIGHT JOIN customers AS c ON t.customer_id = c.id;
+SELECT COUNT(DISTINCT(t.customer_id)) * 100.00 / COUNT(c.id) FROM tickets AS t LEFT JOIN customers AS c ON t.customer_id = c.id;
+SELECT COUNT(DISTINCT(t.customer_id)) * 100 / COUNT(c.id) FROM customers AS c LEFT JOIN tickets AS t ON t.customer_id = c.id;
+SELECT COUNT(DISTINCT(t.customer_id::decimal)) * 100 / COUNT(c.id) FROM customers AS c LEFT JOIN tickets AS t ON t.customer_id = c.id;
+SELECT COUNT(DISTINCT(t.customer_id::decimal)) * 100.00 / COUNT(c.id) FROM customers AS c LEFT JOIN tickets AS t ON t.customer_id = c.id;
+SELECT COUNT(DISTINCT(t.customer_id::decimal)), COUNT(c.id) FROM customers AS c LEFT JOIN tickets AS t ON t.customer_id = c.id;
+SELECT COUNT(DISTINCT(t.customer_id::decimal)), COUNT(c.id) FROM customers AS c RIGHT JOIN tickets AS t ON t.customer_id = c.id;
+SELECT COUNT(DISTINCT(t.customer_id::decimal)), COUNT(c.id) FRs AS c JOIN tickets AS t ON t.customer_id = c.id;
+\q
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\d events
+\d 
+\d tickets
+\d tickets
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\d
+\d customers
+\d customers
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\i ass6.sql 
+\d event
+\d
+\d events
+\d customers
+\d tickets
+\d seats
+\i ass6.sql 
+\i ass6.sql 
+\d sections
+\i ass6.sql 
+SELECT code, name FROM sections LIMIT 3;
+SELECT code, name FROM sections LIMIT 3;
+\i ass6.sql 
+\i ass6.sql 
+\d
+\q
+\d
+\d orders
+ALTER TABLE orders
+ADD CONSTRAINT product_id_fkey
+FOREIGN KEY product_id
+REFERENCES products id;
+ALTER TABLE orders
+ADD CONSTRAINT product_id_fkey
+FOREIGN KEY (product_id)
+REFERENCES products(id);
+\d orders
+select * from products;
+\d products
+INSERT INTO orders
+;
+INSERT INTO products (name)
+VALUES
+('small bolt'),
+('large bolt');
+select * from products;
+INSERT INTO orders (product_id, quantity)
+VALUES
+((SELECT id FROM products WHERE name = 'small bolt'), 10),
+((SELECT id FROM products WHERE name = 'small bolt'), 25),
+((SELECT id FROM products WHERE name = 'large bolt'), 15);
+select * from orders;
+SELECT orders.quantity, products.name
+FROM orders
+JOIN products
+ON orders.product_id = products.id;
+SELECT orders.quantity, products.name
+FROM orders
+JOIN products
+ON orders.product_id = products.id;
+\i ass7.sql 
+\i ass7.sql 
+SELECT * FROM ORDERS;
+\i ass7.sql 
+ALTER TABLE orders
+ALTER COLUMN product_id SET NOT NULL;
+DELETE FROM orders WHERE product_id IS NULL;
+ALTER TABLE orders
+ALTER COLUMN product_id SET NOT NULL;
+\i ass7.sql 
+\i ass7.sql 
+select * from reviews;
+\q
+\l
+\c one_to_many 
+\d
+\q
+ls
+;
+\d
+select * from calls;
+select * from contracts;
+select * from contacts;
+Select first_name, last_name, number, when, duration
+FROM calls
+INNER JOIN contacts
+ON calls.contact_id = contacts.id;
+Select first_name, last_name, number, "when", duration
+FROM calls
+INNER JOIN contacts
+ON calls.contact_id = contacts.id;
+Select calls.id, first_name, last_name, number, "when", duration
+FROM calls
+INNER JOIN contacts
+ON calls.contact_id = contacts.id;
+SELECT * FROM calls, contacts WHERE contacts.id = calls.contact_id;
+SELECT * FROM calls, contacts WHERE contacts.id = calls.contact_id;
+\d calls
+INSERT INTO calls ("when", duration, contact_id)
+VALUES ('2016-01-18 14:47:00', 632, 6);
+select * from calls;
+SELCT "when", duration, first_name 
+FROM calls
+JOIN contacts
+ON contacts.id = calls.contact_id
+WHERE first_name <> 'William' || last_name <> 'Smith';
+SELECT "when", duration, first_name 
+FROM calls
+JOIN contacts
+ON contacts.id = calls.contact_id
+WHERE first_name <> 'William' || last_name <> 'Smith';
+SELECT "when", duration, first_name 
+FROM calls
+JOIN contacts
+ON contacts.id = calls.contact_id
+WHERE first_name <> 'William';
+SELECT "when", duration, first_name 
+FROM calls
+JOIN contacts
+ON contacts.id = calls.contact_id
+WHERE (first_name || ' ' || last_name) <> 'William Smith';
+SELECT "when", duration, first_name 
+FROM calls
+JOIN contacts
+ON contacts.id = calls.contact_id
+WHERE (first_name || ' ' || last_name) != 'William Swih';
+SELECT "when", duration, first_name 
+FROM calls
+JOIN contacts
+ON contacts.id = calls.contact_id
+WHERE (first_name || ' ' || last_name) <> 'William Swift';
+select * from contacts;
+INSERT INTO contacts (first_name, last_name, number)
+VALUES
+('Merve', 'Elk', 6343511126),
+('Sawa', 'Fyodorov', 6125594874);
+select * from contacts;
+\d contacts
+INSERT INTO contacts ("when", duration, contact_id)
+VALUES
+('2016-01-18 21:22:00', 79, 27),
+('2016-01-18 11:52:00', 175, 26);
+INSERT INTO calls ("when", duration, contact_id)
+VALUES
+('2016-01-18 21:22:00', 79, 27),
+('2016-01-18 11:52:00', 175, 26);
+select * from calls;
+ALTER TABLE contacts
+ADD CONSTRAINT unique_number UNIQUE (number);
+\d contacts
+select * from contacts;
+INSERT INTO contacts (first_name, last_name, number)
+VALUES
+('MANNY', 'Paquilla', 6125594874);
+\l
+\c jdfortune
+DROP DATABASE one_to_many
+\l
+;
+\l
+DROP DATABASE l3_a6;
+DROP DATABASE l3_a7;
+\d
+\l
+\d residents
+\c residents
+\d
+\d people
+select count(id) from people;
+select * from people;
+\c jdfortune 
+DROP DATABASE residents;
+\l
+\q
+SELECT * FROM films;
+ALTER TABLE films ALTER COLUMN SET duration = 130 WHERE duration = 132;
+UPDATE films SET duration = 130 WHERE duration = 132;
+ALTER TABLE films ALTER COLUMN SET duration = 130 WHERE duration = 132;
+SELECT * FROM films;
+UPDATE films SET duration = 132 WHERE duration = 130;
+SELECT * FROM films;
+\i one-to-many.sql 
+\i one-to-many.sql 
+select * from directors;
+\i one-to-many.sql 
+select * from films;
+select * from films;
+select * from films;
+\d films
+\i one-to-many.sql 
+select * from films;
+\i one-to-many.sql 
+\i one-to-many.sql 
+select * from films;
+\i one-to-many.sql 
+\i one-to-many.sql 
+\i one-to-many.sql 
+\i one-to-many.sql 
+\i one-to-many.sql 
+\q
+\d
+\d planets
+\d starts
+\d stars
+\i one-to-many.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\d stars
+ALTER TABLE stars DROP CONSTRAINT spectral_type_check1;
+ALTER TABLE stars DROP CONSTRAINT stars_spectral_type_check1;
+\d stars
+\q
+\l
+\c extrasolar 
+\d stars
+ALTER TABLE stars DROP CONTSTRAINT start_spectral_type_check;
+ALTER TABLE stars DROP CONTSTRAINT stars_spectral_type_check;
+ALTER TABLE stars DROP CONTSTRAINT (stars_spectral_type_check);
+\d stars
+ALTER TABLE stars DROP CONSTRAINT "stars_spectral_type_check";
+\d stars
+ALTER TABLE stars
+ADD CONSTRAINT spectral_type_enum ENUM('O', 'B', 'A', 'F', 'G', 'K', 'M');
+\i 1_extrasolar_planteary_database.sql 
+\d planets
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\i 1_extrasolar_planteary_database.sql 
+\c jdfortune 
+\q
+\c jdfortune 
+DROP DATABASE extrasolar;
+\l
+CREATE DATABASE DML_exercises;
+\l
+\c dml_exercises 
+\d
+\c jdfortune 
+DROP DATABASE dml_exercises;
+\i dml_exercises
+\q
+\i dml_exercises.sql 
+\d
+\d parts
+\i dml_exercises.sql 
+\d parts
+\i dml_exercises.sql 
+select * from parts
+;
+select * from devices
+;
+SELECT devices.id, name AS device, part_number, created_at
+FROM devices
+INNER JOIN parts
+ON parts.device_id = devices.id;
+SELECT devices.id, name AS device, part_number, created_at
+FROM devices
+INNER JOIN parts
+ON parts.device_id = devices.id;
+SELECT devices.id, name AS device, part_number, created_at
+FROM devices
+INNER JOIN parts
+ON parts.device_id = devices.id
+GROUP BY device;
+SELECT devices.id, name AS device, part_number, created_at
+FROM devices
+INNER JOIN parts
+ON parts.device_id = devices.id
+GROUP BY devices.name;
+SELECT devices.id, name AS device, part_number, created_at
+FROM devices
+INNER JOIN parts
+ON parts.device_id = devices.id
+GROUP BY created_at;
+SELECT devices.id, name AS device, part_number, created_at
+FROM devices
+INNER JOIN parts
+ON parts.device_id = devices.id
+GROUP BY part_number;
+SELECT devices.id, name AS device, part_number, created_at
+FROM devices
+INNER JOIN parts
+ON parts.device_id = devices.id
+GROUP BY devices.id,;
+SELECT devices.id, name AS device, part_number, created_at
+FROM devices
+INNER JOIN parts
+ON parts.device_id = devices.id
+GROUP BY devices.id;
+SELECT devices.id, name AS device, part_number, created_at
+FROM devices
+INNER JOIN parts
+ON parts.device_id = devices.id
+GROUP BY devices.id, part_dnumber;
+SELECT devices.id, name AS device, sum(part_number), created_at
+FROM devices
+INNER JOIN parts
+ON parts.device_id = devices.id
+GROUP BY device;
+SELECT devices.id, name AS device, sum(part_number), created_at
+FROM devices
+INNER JOIN parts
+ON parts.device_id = devices.id
+GROUP BY devices.id, device;
+SELECT devices.id, name AS device, sum(part_number), created_at
+FROM devices
+INNER JOIN parts
+ON parts.device_id = devices.id
+GROUP BY devices.id;
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\i dml_exercises.sql 
+\d
+\d books
+\d bppls
+\d books
+select * from books;
+\d
+select * from categories;
+select * from books_categories 
+;
+\d books_categories 
+\i ass12.sql 
+\d books_categories 
+\i ass12.sql 
+\i ass12.sql 
+\d books_categories 
+\d books_categories 
+\i ass12.sql 
+\i ass12.sql 
+\i ass12.sql 
+\d books_categories 
+\d books_categories 
+\i ass12.sql 
+\d books_categories 
+\d books_categories 
+\d books_categories 
+\i ass12.sql 
+\d books_categories 
+\i ass12.sql 
+\d books_categories 
+\d categories
+\i ass12.sql 
+\d
+\d
+\i ass12.sql 
+\i ass12.sql 
+\i ass12.sql 
+\i ass12.sql 
+\d books
+select * from categories;
+\i ass12.sql 
+\d books
+SELECT * FROM categories;
+\i ass12.sql 
+select * from books;
+\i ass12.sql 
+\i ass12.sql 
+\i ass12.sql 
+\i ass12.sql 
+\i ass12.sql 
+\i ass12.sql 
+\i ass12.sql 
+\d books_categories
+\d categories
+\i ass12.sql 
+\i ass12.sql 
+\i ass12.sql 
+\i ass12.sql 
+\q
+\d
+\l
+DROP DATABASE films;
+\l
+\q
+\d
+select * from directors
+;
+select * from films;
+\i ass14.sql 
+\i ass14.sql 
+\i ass14.sql 
+DROP TABLE films_directors;
+\d
+\i ass14.sql 
+\d
+select id, director_id from films;
+select * from films;
+select id, director_id from films;
+select director_id, id from films;
+\i ass14.sql 
+\i ass14.sql 
+\d films
+\d directors
+SELECT films.title, directors.name FROM films
+JOIN directors_films ON films.id = directors_films.film_id
+JOIN directors ON directors_films.directors_id = directors.id;
+SELECT films.title, directors.name FROM films
+JOIN directors_films ON films.id = directors_films.film_id
+JOIN directors ON directors_films.director_id = directors.id;
+SELECT films.title, directors.name FROM films
+JOIN directors_films ON films.id = directors_films.film_id
+JOIN directors ON directors_films.director_id = directors.id
+ORDER BY name;
+\i ass14.sql 
+\d films
+\i ass14.sql 
+select * from directors
+;
+\d films
+\i ass14.sql 
+\i ass14.sql 
+select * from directors;
+select * from films;
+\i ass14.sql 
+\i ass14.sql 
+\i ass14.sql 
+\i ass14.sql 
+\i ass14.sql 
+\i ass14.sql 
+\q
+\d
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+select * from customers;
+select * from services;
+\i many_to_many.sql 
+select * from customers
+;
+select * from services;
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\q
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+SELECT * FROM customers;
+SELECT * FROM customers;
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\d services
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\i many_to_many.sql 
+\s customers

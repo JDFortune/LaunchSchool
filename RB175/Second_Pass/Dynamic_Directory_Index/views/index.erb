@@ -1,0 +1,40 @@
+<html lang="en-US">
+  <head>
+    <title>Directory Index</title>
+    <meta charset="utf-8">
+    <style>
+      ul {
+        margin: 0;
+        padding: 0;
+        outline: 1px solid black;
+      }
+
+      li {
+        list-style-type: none;
+      }
+
+      p {
+        outline: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <% @content.each do |file_name| %>
+      <li>
+        <a href="/<%= file_name %>">
+          <%= file_name %>
+        </a>
+      </li>
+    <% end %>
+    </ul>
+
+    <p>
+      <% if params[:sort] == "desc" %>
+        <a href="/">Sort Ascending</a>
+      <% else %>
+        <a href="?sort=desc">Sort Descending</a>
+      <% end %>
+    </p>
+  </body>
+</html>

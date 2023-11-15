@@ -1,0 +1,81 @@
+-- CREATE DATABASE billing;
+
+-- \c billing
+
+-- CREATE TABLE customers (
+--   id serial PRIMARY KEY,
+--   name text NOT NULL,
+--   payment_token char(8) NOT NULL CHECK (payment_token ~ '[A-Z]{8}')
+-- );
+
+-- CREATE SEQUENCE services_id_seq;
+
+-- CREATE TABLE services (
+--   id integer PRIMARY KEY DEFAULT nextval('services_id_seq'),
+--   description text NOT NULL,
+--   price numeric(10,2) NOT NULL CHECK (price >= 0.00)
+-- );
+
+-- -- Data for the customers table
+-- INSERT INTO customers
+-- (id, "name", payment_token)
+-- VALUES
+-- (1, 'Pat Johnson'   ,'XHGOAHEQ'),
+-- (2, 'Nancy Monreal' ,'JKWQPJKL'),
+-- (3, 'Lynn Blake'    ,'KLZXWEEE'),
+-- (4, 'Chen Ke-Hua'   ,'KWETYCVX'),
+-- (5, 'Scott Lakso'   ,'UUEAPQPS'),
+-- (6, 'Jim Pornot'    ,'XKJEYAZA');
+
+
+-- Data for the services table
+-- INSERT INTO services
+-- (id , description, price)
+-- VALUES
+-- (1, 'Unix Hosting'        , 5.95),
+-- (2, 'DNS'                 , 4.95),
+-- (3, 'Whois Registration'  , 1.95),
+-- (4, 'High Bandwidth'      , 15.00),
+-- (5, 'Business Support'    , 250.00),
+-- (6, 'Dedicated Hosting'   , 50.00),
+-- (7, 'Bulk Email'          , 250.00),
+-- (8, 'One-to-one Training' , 999.00);
+
+-- CREATE TABLE subscriptions (
+--   id serial PRIMARY KEY,
+--   customer_id int NOT NULL REFERENCES customers (id) ON DELETE CASCADE,
+--   service_id inT NOT NULL,
+--   FOREIGN KEY (service_id)
+--     REFERENCES services (id)
+--       ON DELETE CASCADE,
+--   UNIQUE(customer_id, service_id)
+-- );
+
+-- INSERT INTO subscriptions
+-- (customer_id, service_id)
+-- VALUES
+-- (1, 1), (1, 2), (1, 3),
+-- (3,1), (3, 2), (3, 3), (3, 4), (3, 5),
+-- (4, 1), (4, 4),
+-- (5, 1), (5, 2), (5, 6),
+-- (6, 1), (6, 6), (6, 7);
+
+-- INSERT INTO customers
+-- VALUES (7, 'John Doe', 'EYODHLCN');
+
+-- INSERT INTO subscriptions (customer_id, service_id)
+-- VALUES
+-- (7, 1), (7, 2), (7, 3);
+
+-- SELECT sum(price) FROM subscriptions
+-- JOIN services ON subscriptions.service_id = services.id
+-- WHERE price > 100.00;
+
+-- SELECT sum(price) FROM customers, services WHERE price > 100.00;
+
+-- SELECT sum(price) FROM customers
+-- CROSS JOIN services
+-- WHERE price > 100.00;
+
+DELETE FROM customers WHERE name LIKE 'Chen%';
+DELETE FROM services WHERE description = 'Bulk Email';
