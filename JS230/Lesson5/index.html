@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <ul> 
+      <li><a href="#" data-block="gold">Gold Sponsors</a></li>
+      <li><a href="#" data-block="silver">Silver Sponsors</a></li>
+      <li><a href="#" data-block="bronze">Bronze Sponsors</a></li>
+    </ul>
+    
+    <article data-block="gold">
+      <h1>Gold Sponsor</h1>
+    </article>
+    
+    <article data-block="silver">
+      <h1>Silver Sponsor</h1>
+    </article>
+    
+    <article data-block="bronze">
+      <h1>Bronze Sponsor</h1>
+    </article>
+    
+    <script>
+      $('ul').on('click', 'a', event => {
+        event.preventDefault();
+
+        let value = $(event.target).attr('data-block');
+    
+        $('article').hide()
+                    .filter(`[data-block=${value}]`)
+                    .show();
+      });
+    </script>
+  </body>
+</html>

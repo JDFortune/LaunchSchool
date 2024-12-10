@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js" integrity="sha512-E1dSFxg+wsfJ4HKjutk/WaCzK7S2wv1POn1RRPGh8ZK+ag9l244Vqxji3r6wgz9YBf6+vhQEYJZpSjqWFPg9gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+  <button id="addScheduleBtn">Add more schedules</button>
+  <form action="/api/schedules" method="post">
+    
+    <button id="submitBtn" type="submit">Submit</button>
+  </form>
+
+  <script id="new_schedule_tmpl"  type="text/x-handlebars">
+    <fieldset>
+      <legend>Schedule {{id}}</legend>
+      <label for="staff_{{id}}">Staff Name:</label>
+      <select name="staff_{{id}}">
+        {{#each staffMembers}}
+        {{> staff_option_tmpl}}
+        {{/each}}
+      </select><br>
+      <label for="date_{{id}}">Date:</label>
+      <input type="text" name="date_{{id}}" placeholder="mm-dd-yy"><br>
+      <label for="time_{{id}}">Time:</label>
+      <input type="text" name="time_{{id}}" placeholder="hh:mm"><br>
+    </fieldset>
+  </script>
+
+  <script id="staff_option_tmpl" data-type="partial" type="text/x-handlebars">
+    <option value={{id}}>{{name}}</option>
+  </script>
+
+  <script>
+    let templates = {};
+    let scheduleCount = 0;
+    let staff;
+
+  // fetch staff data for select element
+  (function() {
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', '/api/staff_members');
+      xhr.responseType = 'json';
+      xhr.send();
+
+      xhr.onload = () => {
+        staff = xhr.response;
+        addScheduleBtn.dispatchEvent(new Event('click'));
+      }
+    })();
+
+    // compile Handlebars templates and register Partials
+    document.querySelectorAll('[type$=handlebars]').forEach(script => {
+      templates[script.id] = Handlebars.compile(script.innerHTML);
+      if (script.dataset.type === 'partial') {
+        Handlebars.registerPartial(script.id, script.innerHTML);
+      }
+    });
+ 
+
+    let addScheduleBtn = document.querySelector('#addScheduleBtn');
+    let submitBtn = document.querySelector('#submitBtn');
+    let form = document.querySelector('form');
+
+    addScheduleBtn.addEventListener('click', event => {
+      scheduleCount++;
+      let scheduleHTML = templates['new_schedule_tmpl']({id: scheduleCount, staffMembers: staff});
+      form.insertAdjacentHTML('beforeend', scheduleHTML);
+      form.insertAdjacentElement('beforeend', submitBtn);
+    });
+
+    function formDataToJson() {
+      let arr = [];
+
+      for (let i = 1; i <= scheduleCount; i++) {
+        let schedule = {};
+        schedule['staff_id'] = form[`staff_${i}`].value;
+        schedule['date'] = form[`date_${i}`].value;
+        schedule['time'] = form[`time_${i}`].value;
+        arr.push(schedule);
+      }
+      
+      return { schedules: arr}
+    }
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+
+      let json = JSON.stringify(formDataToJson());
+      let xhr = new XMLHttpRequest();
+      xhr.open('POST', form.action);
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
+      xhr.send(json);
+
+      xhr.onload = () => {
+        switch(xhr.status) {
+          case 201:
+            alert('All schedules uploaded');
+            form.reset();
+            break;
+          case 400:
+            alert('Please Check your inputs');
+            break;
+        }
+      };
+      
+    });
+  </script>
+</body>
+</html>

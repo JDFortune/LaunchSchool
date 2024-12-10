@@ -1,36 +1,54 @@
-function Pet(animal, name) {
-  this.animal = animal;
-  this.name = name;
-}
+// function Pet(animal, name) {
+//   this.animal = animal;
+//   this.name = name;
+// }
 
-let PetPrototypeMethods = {
-  sleep() {
-    console.log('I am sleeping');
-  },
+// let PetPrototypeMethods = {
+//   sleep() {
+//     console.log('I am sleeping');
+//   },
 
-  wake() {
-    console.log('I am awake');
-  },
-}
+//   wake() {
+//     console.log('I am awake');
+//   },
+// }
 
-Object.assign(Pet.prototype, PetPrototypeMethods);
+// Object.assign(Pet.prototype, PetPrototypeMethods);
 
-let pudding = new Pet('Cat', 'Pudding');
-console.log(`I am a ${pudding.animal}. My name is ${pudding.name}.`)
-pudding.sleep();
-pudding.wake();
+// let pudding = new Pet('Cat', 'Pudding');
+// console.log(`I am a ${pudding.animal}. My name is ${pudding.name}.`)
+// pudding.sleep();
+// pudding.wake();
 
-let neptune = new Pet('Fish', 'Neptune');
-console.log(`I am a ${neptune.animal}. My name is ${neptune.name}.`)
-pudding.sleep();
-pudding.wake();
+// let neptune = new Pet('Fish', 'Neptune');
+// console.log(`I am a ${neptune.animal}. My name is ${neptune.name}.`)
+// pudding.sleep();
+// pudding.wake();
 
-console.log(pudding);
-console.log(neptune);
+// console.log(pudding);
+// console.log(neptune);
 
-for (let prop in Pet.prototype) {
-  console.log(prop);
-  console.log('--------')
-  console.log(Pet.prototype[prop].toString());
-  console.log('')
-}
+// for (let prop in Pet.prototype) {
+//   console.log(prop);
+//   console.log('--------')
+//   console.log(Pet.prototype[prop].toString());
+//   console.log('')
+// }
+
+class Rectangle {
+  constructor(length, width) {
+    this.length = length;
+    this.width = width;
+  }
+
+  getArea() {
+    return this.length * this.width;
+  }
+};
+
+
+let rec = new Rectangle(10, 5);
+
+console.log(rec instanceof Rectangle);
+console.log(rec.constructor);
+console.log(typeof Rectangle);

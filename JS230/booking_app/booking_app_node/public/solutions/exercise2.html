@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link rel="shortuct icon" href="data:image/x-icon;," type="image/x-icon">
+  </head>
+  <body>
+    <script>
+      function retrieveSchedules() {
+        return new Promise((resolve, reject) => {
+          let xhr = new XMLHttpRequest();
+          xhr.open('GET', '/api/schedules');
+          xhr.timeout = 5000;
+          xhr.responseType = 'json';
+
+          xhr.send();
+
+          xhr.addEventListener('load', () => resolve(xhr.response));
+          xhr.addEventListener('timeout', event => resolve('Session has timed out'));
+          xhr.onerror = () => reject('Something went Wrong');
+        });
+      }
+
+      (async () =>{
+        let result = {};
+        let response = await retrieveSchedules();
+
+        if (response instanceof Array) {
+          if (response.length === 0) {
+            alert('There are no schedules, currently.');
+          } else {
+            let schedules = response.map(({staff_id}) => staff_id);
+            
+            schedules.forEach(id => {
+              let key = `staff ${id}`;
+              result[key] = result[key] + 1 || 1;
+            });
+            
+            alert(JSON.stringify(result));
+          }
+        } else {
+          alert(schedules);
+        }
+        
+        alert('Request Completed');
+      })();
+    </script>
+  </body>
+</html>

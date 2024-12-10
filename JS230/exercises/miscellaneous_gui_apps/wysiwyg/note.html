@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Note Pad</title>
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="note.css">
+  <script src="note.js"></script>
+</head>
+<body>
+  <h1>Rich Text Editor</h1>
+  <main>
+    <div id="toolbar">
+      <button id="bold" class="fa fa-bold"></button>
+      <button id="italic" class="fa fa-italic"></button>
+      <button id="underline" class="fa fa-underline"></button>
+      <button id="strikeThrough" class="fa fa-strikethrough"></button>
+      <button id="link" class="fa fa-link"></button>
+      <button id="list-bullet" class="fa fa-list-ul"></button>
+      <button id="list-number" class="fa fa-list-ol"></button>
+      <button id="align-left" class="fa fa-align-left"></button>
+      <button id="align-right" class="fa fa-align-right"></button>
+      <button id="align-center" class="fa fa-align-center"></button>
+      <button id="align-full" class="fa fa-align-justify"></button>
+    </div>
+    <div contenteditable="true" class="text-box">Begin writing here...</div>
+  </main>
+</body>
+</html>

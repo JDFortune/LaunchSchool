@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+</head>
+<body>
+  <script>
+    // function getOpenSchedules() {
+    //   return new Promise((resolve, reject) => {
+    //     let xhr = new XMLHttpRequest();
+    //     xhr.open('GET', '/api/schedules');
+    //     xhr.responseType = 'json';
+    //     xhr.timeout = 5000;
+    //     xhr.send();
+
+    //     xhr.onload = () => {
+    //       let schedules = xhr.response;
+    //       let unbooked = schedules.filter(({student_email}) => !student_email);
+    //       resolve(unbooked);
+    //     };
+
+    //     xhr.ontimeout = () => reject('Request Timed Out. Please try again.');
+    //     xhr.onerror = () => reject('Something went wrong. Please try again.')
+    //   });
+    // }
+
+    // function tallyHo(arr) {
+    //   let tally = {};
+
+    //   arr.forEach(({staff_id}) => {
+    //     let key = `staff ${staff_id}`;
+    //     tally[key] = tally[key] + 1 || 1;
+    //   });
+
+    //   return tally;
+    // }
+
+    // getOpenSchedules()
+    //   .then(result => {
+    //     if (result.length > 0) {
+    //       alert(JSON.stringify(tallyHo(result)));
+    //     } else {
+    //       alert('There are no schedules available.');
+    //     }
+    //   })
+    //   .catch(console.error);
+
+
+    function getStaffSchedules(id) {
+      return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', `/api/schedules/${id}`);
+        xhr.responseType = 'json';
+        xhr.timeout = 5000;
+        xhr.send();
+
+        xhr.onload = () => resolve([`staff ${id}`, xhr.response]);
+        xhr.ontimeout = () => reject('Timedout');
+        xhr.onerror = () => reject('Error');
+      });
+    }
+
+    async function getAvailableSchedules() {
+      let result = await fetch('http://localhost:3000/api/staff_members');
+      let staff = await result.json();
+
+      let staffIdArr = staff.map(({id}) => id);
+
+      Promise.all(staffIdArr.map(id => getStaffSchedules(id)))
+        .then(responses => {
+          let availableSchedules = {};
+          responses.forEach(([key, schedules]) => {
+            scheduleCount = schedules.filter(({student_email}) => !student_email).length;
+            if (scheduleCount) availableSchedules[key] = scheduleCount;
+          });
+
+          alert(JSON.stringify(availableSchedules));
+        })
+        .catch(console.error);
+    }
+
+    getAvailableSchedules();
+
+  </script>
+</body>
+</html>

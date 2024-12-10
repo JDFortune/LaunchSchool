@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1716395765049" clover="3.2.0">
+  <project timestamp="1716395765050" name="All files">
+    <metrics statements="103" coveredstatements="103" conditionals="54" coveredconditionals="54" methods="35" coveredmethods="35" elements="192" coveredelements="192" complexity="0" loc="103" ncloc="103" packages="2" files="3" classes="3"/>
+    <package name="finalTodoApp">
+      <metrics statements="72" coveredstatements="72" conditionals="25" coveredconditionals="25" methods="26" coveredmethods="26"/>
+      <file name="todoApp.js" path="/home/jdfortune/Desktop/LaunchSchool/JS225/finalTodoApp/todoApp.js">
+        <metrics statements="72" coveredstatements="72" conditionals="25" coveredconditionals="25" methods="26" coveredmethods="26"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="80" type="stmt"/>
+        <line num="6" count="80" type="stmt"/>
+        <line num="7" count="80" type="stmt"/>
+        <line num="8" count="80" type="stmt"/>
+        <line num="9" count="80" type="stmt"/>
+        <line num="13" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="15" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="18" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="80" type="stmt"/>
+        <line num="29" count="80" type="stmt"/>
+        <line num="30" count="120" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="115" type="stmt"/>
+        <line num="36" count="79" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="79" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="94" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="45" count="79" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="50" count="25" type="stmt"/>
+        <line num="53" count="25" type="stmt"/>
+        <line num="54" count="102" type="cond" truecount="5" falsecount="0"/>
+        <line num="57" count="79" type="stmt"/>
+        <line num="58" count="79" type="stmt"/>
+        <line num="59" count="79" type="stmt"/>
+        <line num="60" count="79" type="stmt"/>
+        <line num="61" count="79" type="stmt"/>
+        <line num="63" count="23" type="stmt"/>
+        <line num="67" count="25" type="cond" truecount="2" falsecount="0"/>
+        <line num="68" count="22" type="stmt"/>
+        <line num="73" count="80" type="stmt"/>
+        <line num="75" count="80" type="cond" truecount="2" falsecount="0"/>
+        <line num="76" count="79" type="stmt"/>
+        <line num="77" count="79" type="stmt"/>
+        <line num="78" count="79" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
+        <line num="85" count="16" type="cond" truecount="4" falsecount="0"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
+        <line num="90" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="91" count="7" type="stmt"/>
+        <line num="92" count="7" type="stmt"/>
+        <line num="95" count="8" type="stmt"/>
+        <line num="97" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="98" count="7" type="stmt"/>
+        <line num="99" count="7" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="106" count="15" type="stmt"/>
+        <line num="107" count="15" type="stmt"/>
+        <line num="108" count="15" type="stmt"/>
+        <line num="109" count="15" type="stmt"/>
+        <line num="113" count="40" type="stmt"/>
+        <line num="114" count="40" type="stmt"/>
+        <line num="115" count="122" type="stmt"/>
+        <line num="116" count="40" type="stmt"/>
+        <line num="121" count="1" type="stmt"/>
+        <line num="123" count="3" type="stmt"/>
+        <line num="127" count="4" type="stmt"/>
+        <line num="129" count="1" type="stmt"/>
+        <line num="133" count="4" type="stmt"/>
+        <line num="134" count="16" type="stmt"/>
+        <line num="139" count="1" type="stmt"/>
+        <line num="140" count="1" type="stmt"/>
+        <line num="142" count="1" type="stmt"/>
+        <line num="146" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="finalTodoApp.assets">
+      <metrics statements="31" coveredstatements="31" conditionals="29" coveredconditionals="29" methods="9" coveredmethods="9"/>
+      <file name="appData.js" path="/home/jdfortune/Desktop/LaunchSchool/JS225/finalTodoApp/assets/appData.js">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+      </file>
+      <file name="validation.js" path="/home/jdfortune/Desktop/LaunchSchool/JS225/finalTodoApp/assets/validation.js">
+        <metrics statements="24" coveredstatements="24" conditionals="29" coveredconditionals="29" methods="9" coveredmethods="9"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="115" type="stmt"/>
+        <line num="5" count="115" type="stmt"/>
+        <line num="6" count="375" type="stmt"/>
+        <line num="11" count="375" type="stmt"/>
+        <line num="17" count="375" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="373" type="cond" truecount="5" falsecount="0"/>
+        <line num="21" count="103" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="101" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="21" type="stmt"/>
+        <line num="27" count="81" type="cond" truecount="2" falsecount="0"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="30" count="81" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="33" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="39" count="102" type="cond" truecount="2" falsecount="0"/>
+        <line num="41" count="400" type="stmt"/>
+        <line num="45" count="103" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="101" type="cond" truecount="5" falsecount="0"/>
+        <line num="54" count="81" type="cond" truecount="3" falsecount="0"/>
+        <line num="58" count="81" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

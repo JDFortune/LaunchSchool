@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./main.css">
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous">
+    </script>
+  </head>
+  <body>
+    <div id="calculator">
+      <h1 id="result">0</h1>
+      <form>
+        <input id="value1" class="number" type="number">
+        <select id="operation" name="operation">
+          <option value="add">+</option>
+          <option value="subtract">-</option>
+          <option value="multiply">x</option>
+          <option value="divide">÷</option>
+        </select>
+        <input id="value2" class="number" type="number">
+        <input type="submit" value="=">
+      </form>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

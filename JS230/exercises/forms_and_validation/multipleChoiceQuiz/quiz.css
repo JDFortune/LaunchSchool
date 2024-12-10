@@ -1,0 +1,68 @@
+body {
+  font-size: xx-large;
+  background-color: goldenrod;
+}
+
+.question {
+  border: 1px solid black;
+}
+
+.question > * {
+  margin: 0px 0 10px 20px;
+}
+
+.question input:last-child {
+  margin-bottom: 5px;
+}
+
+.question p {
+  margin-top: 20px;
+}
+
+input[type=radio] {
+  border: 0;
+  height: 20px;
+  width: 20px;
+}
+
+input[type=radio]:active {
+  border: 5px solid red;
+  cursor: pointer;
+}
+
+label {
+  display: block;
+  cursor: pointer;
+}
+
+input {
+}
+
+button {
+  font-size: 40px;
+  cursor: pointer;
+  background: greenyellow;
+  border-radius: 4px;
+  margin-top: 5px;
+  border: none;
+}
+
+button:disabled {
+  background: darkgray;
+}
+
+.response {
+  margin: 0;
+}
+
+.correct {
+  border: 1px solid green;
+}
+
+p {
+  margin: 5px;
+}
+
+.incorrect {
+  border: 1px solid red;
+}

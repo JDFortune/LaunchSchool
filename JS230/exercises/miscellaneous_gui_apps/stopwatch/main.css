@@ -1,0 +1,31 @@
+body {
+  background: #a19123;
+}
+
+#stopwatch {
+  text-align: center;
+}
+
+h1 {
+  color: white;
+  /* margin: 2px; */
+  /* display: inline-block; */
+  font-size: 100px;
+  margin-bottom: 20px;
+}
+
+.controls {
+  text-align: center;
+}
+
+.controls button {
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 10px 30px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  outline: 0px;
+  background: transparent;
+  margin-right: 20px;
+}

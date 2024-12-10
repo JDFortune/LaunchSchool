@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Exercise 6</title>
+    <link rel="shortuct icon" href="data:image/x-icon;," type="image/x-icon">
+    <style>
+      li a {
+        text-decoration: none;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bookings</h1>
+    <ul id="content">
+    </ul>
+
+    <script>
+     const content = document.querySelector('#content');
+
+     function fetchJSON(url) {
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.responseType = 'json'
+        xhr.send();
+        xhr.onload = () => resolve(xhr.response);
+      });
+     }
+     
+      content.addEventListener('click',async event => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const element = event.target;
+        if (element.tagName === 'A') {
+          let siblings = element.parentNode.children;
+
+          const ulSib = [...siblings].find(sibling => sibling.tagName === 'UL');
+
+          if (ulSib) {
+            element.parentNode.removeChild(ulSib);
+          } else {
+            const bookings = await fetchJSON(element.href);
+
+              const bookingList = document.createElement('ul');
+              element.parentNode.appendChild(bookingList);
+
+              bookings.forEach((booking, idx) => {
+                const bListItem = document.createElement('li');
+                bListItem.id = `bList_${idx}`;
+                bListItem.textContent = booking.join(' | ');
+                bookingList.appendChild(bListItem);
+              });
+          }
+        }
+      });
+
+     (async () => {
+      const bookingDates = await fetchJSON('/api/bookings');
+      bookingDates.forEach(date => {
+        const listItem = document.createElement('li');
+        const listAnchor = document.createElement('a');
+        listAnchor.setAttribute('href', `/api/bookings/${date}`);
+        listAnchor.textContent = date;
+
+        listItem.appendChild(listAnchor);
+        content.appendChild(listItem);
+      });
+     })();
+    </script>
+  </body>
+</html>

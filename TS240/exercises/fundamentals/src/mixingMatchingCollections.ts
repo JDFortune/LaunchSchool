@@ -1,0 +1,1 @@
+const colors: Array<string> = ['red', 'green', 'blue'];

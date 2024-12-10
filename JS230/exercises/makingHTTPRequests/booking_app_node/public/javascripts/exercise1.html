@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+</head>
+<body>
+  <script>
+    function fetchJSON(url) {
+      return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.responseType = 'json';
+        xhr.send();
+
+        xhr.onload = () => resolve(xhr.response);
+      });
+    }
+
+    let staffMembers;
+    let students;
+    let schedules;
+    let bookingDates;
+
+    Promise.all([
+      fetchJSON('/api/staff_members'), 
+      fetchJSON('/api/students'),
+      fetchJSON('/api/schedules'),
+      fetchJSON('/api/bookings')
+     ])
+      .then(responses => [staffMembers, students, schedules, bookingDates] = responses)
+      .then(() => {
+        console.log(`There are ${staffMembers.length} staff members.`);
+        console.log(`There are ${students.length} students`);
+        console.log(`There are ${schedules.length} schedules.`);
+        console.log(`${bookingDates.length} schedules are currently booked.`);
+
+        let allStaffScheduled = staffMembers.every(staff => schedules.some(schedule => schedule.staff_id === staff.id));
+        console.log('All staff scheduled?', allStaffScheduled);
+
+      })
+      .then(() => {
+        let bookingData;
+
+        Promise.all(bookingDates.map(date => fetchJSON(`/api/bookings/${date}`)))
+          .then(responses => {
+            bookingData = responses;
+          })
+          .then(() => {
+            let allStudentsBooked = students.every(({email}) => bookingData.some(booking => booking.includes(email)));
+            console.log('All students are booked?', allStudentsBooked);
+
+          });
+      });
+  </script>
+</body>
+</html>

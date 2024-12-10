@@ -1,0 +1,133 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  background: rgb(24, 24, 113);
+}
+
+main {
+  display: grid;
+  place-items: center;
+  border: 1px solid black;
+  width: 275px;
+  padding: 10px;
+  margin-top: 50px;
+  background: #aaa;
+  border-radius: 6px;
+  box-shadow: -3px -3px 10px black inset,
+              inset 3px 3px 3px #eee;
+}
+
+table {
+	border-spacing: 5px;
+  width: 250px;
+  border-radius: 5px;
+}
+
+p {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  width: 250px;
+  height: 20px;
+  padding-top: 10px;
+  padding-right: 5px;
+}
+
+h1 { 
+  margin-bottom: 10px;
+  border: 1px solid black;
+  height: 50px;
+  width: 250px;
+  font-size: 40px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.screen {
+  text-align: right;
+  box-shadow: 2px 2px 3px #333 inset,
+              2px 2px 3px #eee;
+  background: #eee;
+}
+
+.button {
+  border: 1px solid black;
+  font-size: 40px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px black,
+              inset 3px 3px 3px #fff;
+  cursor: pointer;
+  padding: 2px;
+  background: #ddd;
+  transition: transform 0.1s, box-shadow 0.1s, background-color 0.1s;
+}
+
+.button:active {
+  transform: translateY(3px);
+  background-color: #aaa;
+  box-shadow: 2px 2px 2px #555 inset,
+              2px 2px 2px #fff;
+}
+
+.clear {
+  background:rgb(100, 100, 250);
+  box-shadow: 3px 3px 3px black,
+              inset 3px 3px 3px rgb(150, 150, 255);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.clear:active {
+  transform: translateY(3px);
+  background-color: rgb(100, 100, 200);
+}
+
+.digit {
+  padding: 15px;
+}
+
+.operator {
+  padding-left: 5px;
+  padding-right: 5px;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link rel="shortuct icon" href="data:image/x-icon;," type="image/x-icon">
+  </head>
+  <body>
+    <p id="staff_count">How many staff are there?</p>
+    <p id="student_count">How many students are there?</p>
+    <p id="schedule_count">How many schedules are there?</p>
+    <p id="booking_count">How many bookings are there?</p>
+    <p id="all_staff_scheduled">Do all staff have schedules</p>
+    <script>
+      // let staffP = document.querySelector('#staff_count');
+      // let studentP = document.querySelector('#student_count');
+      // let scheduleP = document.querySelector('#schedule_count');
+      // let bookingP = document.querySelector('#booking_count');
+      // let paragraphs = [staffP, studentP, scheduleP, bookingP];
+      let paragraphs = document.querySelectorAll('p');
+
+      function basicXHR(method, url) {
+        return new Promise((resolve, reject) => {
+          let xhr = new XMLHttpRequest();
+          xhr.responseType = 'json';
+          xhr.open(method, url);
+
+          xhr.onload = () => resolve(xhr.response);
+          xhr.onerror = err => reject(err);
+
+          xhr.send();
+        });
+      }
+
+      function addAnswer(element, value) {
+        let p = document.createElement('p');
+        p.textContent = value;
+        element.appendChild(p);
+      }
+      let objects = [];
+
+      Promise.allSettled([
+        basicXHR('GET', '/api/staff_members'),
+        basicXHR('GET', '/api/students'),
+        basicXHR('GET', '/api/schedules'),
+        basicXHR('GET', '/api/bookings'),
+      ]).then(result => {
+        result.forEach(({value}, idx) => {
+          objects.push(value);
+          addAnswer(paragraphs[idx], value.length);
+        });
+
+        let [staff, students, schedules, bookings] = objects;
+        staff = [...new Set(staff.map(({id}) => id))];
+        schedules = [...new Set(schedules.map(({staff_id}) => staff_id))];
+        
+        let allStaffScheduled = staff.every(staff_id => schedules.includes(staff_id)) ? 'yes' : 'no';
+        
+        addAnswer([...paragraphs].at(-1), allStaffScheduled);
+      });
+    </script>
+  </body>
+</html>

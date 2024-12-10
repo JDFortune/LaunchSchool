@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Programming Languages</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js" integrity="sha512-E1dSFxg+wsfJ4HKjutk/WaCzK7S2wv1POn1RRPGh8ZK+ag9l244Vqxji3r6wgz9YBf6+vhQEYJZpSjqWFPg9gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+  <h1>Programming Languages</h1>
+  <div id="languages">
+  </div>
+
+  <script id="language_info" type="text/x-handlebars">
+    <div class="lang" data-lang="{{name}}">
+      <h2>{{name}}</h2>
+      <p>{{description}}</p>
+      <a class="more" href="#">Show More</a>
+    </div>
+  </script>
+  
+  <script id="language_list" type="text/x-handlebars">
+    {{#each languages}}
+    {{> language_info}}
+    {{/each}}
+  </script>
+
+  <script src="app.js"></script>
+</body>
+</html>
+

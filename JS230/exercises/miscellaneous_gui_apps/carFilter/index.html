@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+  <link rel="stylesheet" href="main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js" integrity="sha512-E1dSFxg+wsfJ4HKjutk/WaCzK7S2wv1POn1RRPGh8ZK+ag9l244Vqxji3r6wgz9YBf6+vhQEYJZpSjqWFPg9gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="main.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Buy Used Cars</h1>
+
+    <form id="filter_cars">
+      <label for="make">Make</label>
+      <select id="make" name="make"></select>
+      <label for="model">Model</label>
+      <select id="model" name="model"></select>
+      <label for="year">Year</label>
+      <select id="year" name="year"></select>
+      <label for="price">Price</label>
+      <select id="price" name="price"></select>
+  
+      <input type="submit" class="filter_btn" value="Filter">
+    </form>
+  </header>
+
+  <div id="cars"></div>
+
+  <script id="single_car" data-type="partial" type="text/x-handlebars">
+    <div class="car">
+      <figure><img src={{image}}></figure>
+      <h2>{{make}} {{model}}</h2>
+      <p class="year">Year: {{year}}</p>
+      <p class="price">Price: ${{price}}</p>
+      <a href="#">Buy</a>
+    </div>
+  </script>
+
+  <script id="many_cars" type="text/x-handlebars">
+    {{#each cars}}
+    {{> single_car}}
+    {{/each}}
+  </script> 
+
+  <script id="filter_list" type="text/x-handlebars">
+    {{#each option}}
+    <option value={{this}}>{{this}}</option>
+    {{/each}}
+  </script>
+</body> 
+</html>

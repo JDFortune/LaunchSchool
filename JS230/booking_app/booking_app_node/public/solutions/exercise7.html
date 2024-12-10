@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link rel="shortuct icon" href="data:image/x-icon;," type="image/x-icon">
+    <script src="./cancel.js"></script>
+  </head>
+  <body>
+    <h1>Cancel Schedule Booking</h1>
+    <form id="booking_form" action="/api/bookings/">
+      <label for="booked_schedules">Booking:</label>
+      <select id="booked_schedules" name="id"></select>
+      <input id="cancel_booking_submit" type="submit" value="Submit">
+    </form>
+    <h1>Delete Un-Booked Schedule</h1>
+    <form id="schedule_form" action="/api/bookings/">
+      <label for="unbooked_schedules">Schedule:</label>
+      <select id="unbooked_schedules" name="id"></select>
+      <input id="delete_schedule_submit" type="submit" value="Submit">
+    </form>
+    <script>
+      function fetchJson(url) {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', url);
+          xhr.responseType = 'json';
+          xhr.send();
+
+          xhr.onload = () => resolve(xhr.response);
+        });
+      }
+
+      function filterSchedules(schedules, staffs, booked) {
+        let result = [];
+        schedules = schedules.filter(({student_email}) => booked ? student_email : !student_email);
+        schedules.forEach(schedule => {
+          let temp = {id: schedule.id, date: schedule.date, time: schedule.time};
+          let staffName = staffs.find(staff => staff.id === schedule.staff_id).name;
+          temp.staff = staffName;
+          result.push(temp);
+        });
+
+        return result
+      }
+
+      function addOptionsList(selectElement, schedules, staffs, booked) {
+        filterSchedules(schedules, staffs, booked).forEach(schedule => {
+          const option = document.createElement('option');
+          option.setAttribute('value', schedule.id);
+          option.textContent = `${schedule.staff} | ${schedule.date} | ${schedule.time}}`;
+          selectElement.appendChild(option);
+        });
+
+      }
+
+      const bookingForm = document.querySelector('#booking_form');
+      const bookingSelect = bookingForm.querySelector('select');
+      const scheduleForm = document.querySelector('#schedule_form');
+      const scheduleSelect = scheduleForm.querySelector('select');
+
+      bookingForm.addEventListener('submit', event => {
+          event.preventDefault();
+
+          let confirmed = confirm('Are you sure you wish to cancel this booking?');
+
+          if (confirmed) {
+            let id = bookingForm['id'].value;
+            cancelBooking(id);
+            window.location.reload();
+          } else {
+            alert('Bookings unchanged');
+          }
+          
+        });
+
+        scheduleForm.addEventListener('submit', event => {
+          event.preventDefault();
+
+          let confirmed = confirm('Are you sure you wish to delete this schedule?');
+
+          if (confirmed) {
+            let id = scheduleForm['id'].value;
+            deleteSchedule(id);
+            window.location.reload();
+          } else {
+            alert('Schedules unchanged')
+          }
+        });
+
+      (async () => {
+        let staffs = await fetchJson('/api/staff_members');
+        let schedules = await fetchJson('/api/schedules');
+        addOptionsList(bookingSelect, schedules, staffs, true);
+        addOptionsList(scheduleSelect, schedules, staffs, false);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Sign Up Form!</h1>
+    </header>
+
+    <form action="#" method="post" novalidate="true">
+      <div class="names">
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" name="first-name" data-id="First Name" placeholder="John" minlength="2" maxlength="30" pattern="[A-Za-z ]+" required>
+      </div>
+      <div class="names">
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" name="last-name" data-id="Last Name" placeholder="Doe" minlength="2" maxlength="30" pattern="[A-Za-z ]+" required>
+      </div>
+      <div class="info">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" data-id="Email" placeholder="candy@cane.biz" pattern=".+@.+\..+" required>
+      </div>
+      <div class="info">
+        <label for="password">Password</label>
+        <input type="password" id="password" data-id="Password" minlength="10" name="password" required>
+      </div>
+      <div class="info number">
+        <label for="phone">Phone Number <span class="extra">*</span></label>
+        <input type="text" id="phone" name="phone" maxlength="12" data-id="Phone Number" placeholder="555-555-5555" pattern="\d{3}-\d{3}-\d{4}">
+      </div>
+      <div class="info number">
+        <label for="credit-card">Credit Card</label>
+        <div id="cardDiv">
+          <input id="credit-card1" class="creditcard" data-id="Credit Card Field 1" name="credit-card" type="text" minlength="4" maxlength="4" placeholder="0000" pattern="\d{4}" required>
+          <input id="credit-card2" class="creditcard" data-id="Credit Card Field 2" name="credit-card" type="text" minlength="4" maxlength="4" placeholder="0000" pattern="\d{4}" required>
+          <input id="credit-card3" class="creditcard" data-id="Credit Card Field 3" name="credit-card" type="text" minlength="4" maxlength="4" placeholder="0000" pattern="\d{4}" required>
+          <input id="credit-card4" class="creditcard" data-id="Credit Card Field 4" name="credit-card" type="text" minlength="4" maxlength="4" placeholder="0000" pattern="\d{4}" required>
+        </div>
+      </div>
+      <p class="comment"><span class="extra">* optional field</span></p>
+      <input type="submit" value="Sign Up">
+    </form>
+
+    <div id="serialized-form">
+      <h1>Serialized Form</h1>
+
+    </div>
+  </body>
+</html>
